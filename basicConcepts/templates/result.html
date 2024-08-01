@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <style>
+        body {
+            margin: 0;
+            width: 100%;
+        }
+        .above-menu {
+            position: fixed;
+            z-index: 1;
+            width: 100%;
+             padding: 10px 0;
+             color: #fff;
+           background: #006b8f url(leaf-2.png) center no-repeat;  background-size: 55% auto;
+           height:85px;
+         }
+        
+         .container-fluid {
+            position: inherit;
+            top:-0px;
+         }
+         .title {
+             font-family: TahomaBold, 'Open Sans', sans-serif;
+             font-weight: 700;
+             font-size: 32px;
+             color: #ffffff;
+         }
+        .title1 {
+             font-family: Tahoma, 'Open Sans', sans-serif;
+             font-weight: 400;
+             font-size: 24px;
+             color: #ffffff;
+         }
+        
+         .logo-container,
+         .title-container,
+         .logo-container-2 {
+             display: inline-block;
+             margin: 0 20px; 
+             vertical-align: middle;
+             padding-left: 185px;
+             
+         }
+        
+         .logo-container img,
+         .logo-container-2 img {
+             max-width: 100%;
+             height: auto;
+         }
+        
+         .title-container {
+             display: inline-block;
+             vertical-align: middle;
+         }
+        
+         .title,
+         .title1 {
+             margin: 0;
+             color: #fff;
+             font-family: Tahoma, 'Open Sans', sans-serif;
+             text-align: center;
+         }
+        
+         .title {
+            font-weight: bold;
+        
+         }
+        
+         .title1 {
+            font-weight: 500;
+        }
+        
+        .main {
+            position: relative;
+            top:88px;
+        }
+        
+        
+        .menu-2 {
+            position: fixed;
+            top: 125px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 60px;
+            background-color: #f7f7f7;
+            box-shadow: 
+                0 0 8px rgba(0, 0, 0, 0.1), 
+                0 0 8px rgba(0, 0, 0, 0.1),
+                0 0 8px rgba(0, 0, 0, 0.1), 
+                0 0 8px rgba(0, 0, 0, 0.1); 
+            border-radius: 10px;
+            z-index: 1;
+            display: flex;
+            /* justify-content: space-around;  */
+            align-items: center; 
+            gap: 20px;
+        }
+        
+        a {
+            text-decoration: none; 
+            color: inherit; 
+            }
+        
+        .menu-2 p {
+            position: relative;
+            display: inline-block;
+            left: 50px;
+            margin: 0;  
+            align-items: center;
+            width: auto;
+            font-family: Tahoma, 'Open Sans', sans-serif;
+            font-size: 15px;
+            color: #006b8f;
+            font-weight: 530;
+        }
+
+        .container-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20vh;
+            width: 40vw;
+            margin: auto; /* Added to center horizontally */
+            position: absolute; /* Added to center vertically */
+            top: 0; bottom: 0; left: 0; right: 0; /* Set absolute positioning to center vertically */
+        }
+        
+
+        .result {
+            margin-top: 0px;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .cyberbullying {
+            color: red;
+            font-weight: bold;
+        }
+
+        .not-cyberbullying {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="above-menu">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="logo-container">
+                        <img src="{% static 'images/RIBlogo1.png'%}" class="img-responsive" alt="">
+                    </div>
+    
+                    <div class="title-container">
+                        <h3 class="title">CYBER BULLYING DETECTION</h3>
+                        <h4 class="title1">RWANDA INVESTIGATION BUREAU</h4>
+                    </div>
+    
+                    <div class="logo-container-2">
+                        <img src="{% static 'images/riblogo2.png'%}" class="img-responsive" alt="">
+                    </div>
+                </div>
+                <img src="{% static 'images/leaf-2.png'%}">
+            </div>
+        </div>
+
+        <div class="menu-2">
+            <p><a href="{% url 'welcome' %}">HOME</a></p>
+        </div>
+    </header>
+    <div class="container-box">
+        <h2>The message of {{name}}, message: {{message}}.</h2>
+        <div class="result {% if 'Cyberbullying detected (Type: aggression)' in result %}cyberbullying{% elif 'Not Cyberbullying' in result %}not-cyberbullying{% else %}unknown{% endif %}">
+            <p class="labeled">Has been labeled as: {{result}}</p>
+        </div>
+    </div>
+</body>
+</html>
